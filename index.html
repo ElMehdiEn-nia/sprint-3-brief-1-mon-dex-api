@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon Dex</title>
+  <link rel="stylesheet" href="./dist/output.css">
+  <link rel="stylesheet" href="input.css">
+</head>
+<body class="bg-ground font-body text-ink">
+  
+  
+
+  <!-- ===================== EN-TÊTE ===================== -->
+  <header class=" bg-red-700 text-yellow-400">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-8 py-5 ">
+      <div class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-black">
+          <svg aria-hidden="true" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <div>
+          <p class="font-display text-2xl font-extrabold leading-none">Mon Dex</p>
+          <p class="text-sm text-black">[Votre univers] · <span id="creature-count">6</span> créatures</p>
+        </div>
+      </div>
+      <nav aria-label="Navigation principale" class="flex flex-wrap gap-2">
+        <a href="#grid" class="rounded-full bg-black px-4 py-2">Créatures</a>
+        <a href="#team" class="rounded-full bg-black px-4 py-2">Mon équipe · <span id="team-count">0</span>/6</a>
+        <a href="#create" class="rounded-full bg-white px-4 py-2 font-bold text-ink">+ Nouvelle Pokemon</a>
+      </nav>
+    </div>
+    
+  </header>
+
+  <main class="mx-auto flex max-w-7xl flex-col gap-8 px-8 py-8  border border-blue-700">
+
+    <!-- ===================== RECHERCHE ET FILTRES ===================== -->
+    <section aria-label="Recherche et filtres" class="flex flex-col gap-4">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h1 class="font-display text-4xl font-extrabold">Trouver une créature</h1>
+        <label class="flex w-full max-w-md flex-col gap-1 text-sm font-bold">
+          Rechercher par nom
+          <input id="search" type="search" placeholder="Chercher un Pokemon" class="field font-normal">
+        </label>
+      </div>
+      
+<div>
+  <button class="filter-btn text-black px-4 py-2 rounded-full font-medium  hover:bg-red-700 " data-type="Tous">Tous</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Eau">Eau</button>
+  <button class="filter-btn text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Electrique">Electrique</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Feu">Feu</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Normal">Normal</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Dragon">Dragon</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Poison">Poison</button>
+  <button class="filter-btn  text-yellow-400 px-4 py-2 rounded-full font-medium hover:bg-black " data-type="Combat">Combat</button>
+</div>
+
+    </section>
+
+    <div class="flex gap-8 items-start">
+
+      <!-- ===================== GRILLE DES CRÉATURES ===================== -->
+      <section id="grid" aria-label="Créatures" class="grid min-w-0 flex-1 grid-cols-3 gap-5">    
+      </section>
+
+      <aside class="flex w-[420px] shrink-0 flex-col gap-6">
+
+        <!-- ===================== PANNEAU DE DÉTAIL ===================== -->
+        <section id="detail" aria-label="Détail de la créature" class="flex flex-col gap-4 rounded-card border-2 border-ink bg-white p-6">
+          
+        </section>
+
+        <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
+        <section id="team" aria-label="Mon équipe" class="rounded-card bg-white p-6">
+          <h2 class="font-display text-2xl font-extrabold">Mon équipe</h2>
+          <!-- TODO (Partie 1) : terminez cette section en suivant la maquette :
+               compteur x/6, 6 emplacements (vides ou remplis), message de règles. -->
+        </section>
+
+      </aside>
+    </div>
+
+    <!-- ===================== FORMULAIRE DE CRÉATION ===================== -->
+    <section id="create" aria-label="Nouvelle créature" class="flex flex-col gap-6 rounded-card bg-white p-8">
+      <div>
+        <h2 class="font-display text-3xl font-extrabold">Nouvelle Pokemon</h2>
+        <p class="text-muted">Chaque champ est vérifié avant l'ajout de la créature.</p>
+      </div>
+      <form id="creature-form" novalidate class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <label class="flex flex-col gap-1 text-sm font-bold">Numéro
+          <input name="id" type="text" placeholder="#000" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Nom
+          <input name="name" type="text" placeholder="Nom de Pokemon" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Type
+          <select name="type" class="field font-normal">
+            <option value="">Choisir un type</option>
+            <option>Feu</option><option>Eau</option><option>Poison</option><option>Normal</option>
+            <option>Electrique</option><option>Combat</option><option>Dragon</option>
+          </select>
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Niveau
+          <input name="level" type="text" placeholder="Base, Niveau 1, N…" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 1
+          <input name="stat1" type="text" placeholder="0 à 999" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 2
+          <input name="stat2" type="text" placeholder="0 à 999" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 3
+          <input name="stat3" type="text" placeholder="0 à 999" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold">Lien de l'image
+          <input name="image" type="text" placeholder="https://…/image.png" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold md:col-span-2 lg:col-span-4">Description
+          <textarea name="description" rows="3" placeholder="10 à 200 caractères" class="rounded-xl border-2 border-line p-3 font-normal outline-none"></textarea>
+          <span class="error-message text-sm font-normal text-muted"></span>
+        </label>
+        <div class="flex flex-wrap justify-end gap-3 md:col-span-2 lg:col-span-4">
+          <button type="reset" class="btn-outline px-6">Effacer</button>
+          <button type="submit" class="btn-primary">Ajouter le Pokemon</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="mx-auto max-w-7xl px-8 pb-10 text-sm text-muted">
+    Images : [source des images de votre univers]. Projet de fans réalisé dans le cadre d'une formation.
+  </footer>
+  <script type="module" src="./script.js"></script>
+  
+</body>
+</html>

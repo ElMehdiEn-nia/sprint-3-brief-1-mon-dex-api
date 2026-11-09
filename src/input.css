@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.pokemon-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-4px);
+}
+
+
+.pokemon-card img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
+}
+
+
+.add-team-btn {
+  width: 100%;
+  margin-top: auto;
+  background-color: #111827;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-team-btn:hover {
+  background-color: #1f2937;
+}
+
+.add-team-btn:disabled {
+  background-color: #16a34a;
+  cursor: not-allowed;
+}
+
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background-color: #dc2626;
+  color: white;
+}
+
+.filter-btn.inactive {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.filter-btn.inactive:hover {
+  background-color: #d1d5db;
+}
+
+
+.hidden {
+  display: none !important;
+}  
